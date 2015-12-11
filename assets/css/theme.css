@@ -9,8 +9,18 @@ html {
     color: #ffffff;
 }
 
-nav {
-    margin-right: 15px;
+.navbar-custom {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 3;
+    background: transparent;
+    border: transparent solid;
+}
+
+.navbar-custom .navbar-collapse.collapse.in {
+    background: #e4e4e4;
 }
 
 .title-text {
@@ -35,6 +45,10 @@ nav {
     color: #c0c0c0;
 }
 
+.main-section {
+    margin-bottom: 40px;
+}
+
 .post {
     border: transparent solid;
     border-radius: 4px;
@@ -42,8 +56,9 @@ nav {
     margin-bottom: 5px;
 }
 
-.main-section {
-    margin-bottom: 40px;
+.post-date {
+    color: #c0c0c0;
+    font-size: 12px;
 }
 
 footer {
