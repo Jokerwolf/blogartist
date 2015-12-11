@@ -1,0 +1,55 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+.blog-header {
+    background: url("/assets/images/blog-header.jpg") no-repeat;
+    height: 100%;
+    color: #ffffff;
+}
+
+nav {
+    margin-right: 15px;
+}
+
+.title-text {
+    text-align: center;
+}
+
+.title-text h2{
+    font-size: 55px;
+}
+
+.nav > li > a {
+    background: transparent;
+    color: #ffffff;
+}
+
+.nav > li > a:hover,
+.nav > li > a:focus,
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:hover,
+.nav-pills > li.active > a:focus {
+    background: transparent;
+    color: #c0c0c0;
+}
+
+.post {
+    border: transparent solid;
+    border-radius: 4px;
+    box-shadow: 0px 5px 20px -5px #222222;
+    margin-bottom: 5px;
+}
+
+.main-section {
+    margin-bottom: 40px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 35px;
+    text-align: center;
+}
