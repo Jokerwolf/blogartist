@@ -1,0 +1,24 @@
+<div class="post">
+    <div class="post-header">
+        <h1>
+            {{data.getTitle()}}
+        </h1>
+        <div class="post-date">
+            {{data.getPostDate()}}
+        </div>
+    </div>
+    <div class="post-body" ng-bind-html="data.getContent()">
+    </div>
+    <div class="post-footer">
+        <div class="feedback-section pull-right">
+            <a href="#">
+                <span class="glyphicon glyphicon-heart"></span>
+                <span>5</span>
+                <span>Likes</span>
+                <span class="glyphicon glyphicon-comment"></span>
+                <span>3</span>
+                <span>Comments</span>
+            </a>
+        </div>
+    </div>
+</div>
