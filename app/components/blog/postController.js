@@ -3,6 +3,7 @@
  */
 angular.module('blog').controller('postCtrl',['$scope', '$sce', function($scope, $sce){
     $scope.posts = initFakePosts($sce);
+    $scope.posts = $scope.posts.concat(initFakePosts($sce));
 }])
 .directive('blogPost', function() {
     return {
@@ -18,9 +19,7 @@ angular.module('blog').controller('postCtrl',['$scope', '$sce', function($scope,
 function initFakePosts($sce){
     var fakePosts = [];
 
-    var fakePost = new Post();
-    fakePost.setTitle('Something I wanted to say');
-    fakePost.setPostDate('Monday 10th December, 2015');
+    var fakePost = new Post('Something I wanted to say' + Math.random(), 'Monday 10th December, 2015');
     fakePost.setContent($sce.trustAsHtml('<p>\
         Lorem ipsum dolor sit amet, consectetur adipiscing elit.\
         Aenean sit amet vestibulum purus.\
@@ -53,8 +52,8 @@ function initFakePosts($sce){
         Cras sagittis dolor a porta dapibus. Donec eget eros cursus, lacinia risus et, lobortis orci.\
         In at lobortis est, non tempus orci.\
     </p>'));
-    fakePost.setComments();
-    fakePost.setLikes();
+    fakePost.setComments([{},{}]);
+    fakePost.setLikes([{}, {}, {}]);
 
     fakePosts.push(fakePost);
     return fakePosts;
