@@ -1,24 +1,25 @@
 <div class="post">
     <div class="post-header">
         <h1>
-            {{data.getTitle()}}
+            {{ data.getTitle() }}
         </h1>
         <div class="post-date">
-            {{data.getPostDate()}}
+            {{ data.getPostDate() | date }}
         </div>
     </div>
     <div class="post-body" ng-bind-html="data.getContent()">
     </div>
     <div class="post-footer">
-        <div class="feedback-section pull-right">
-            <a href="#">
+        <div class="feedback-section pull-right inline-children">
+            <p ng-click="$parent.likePost()">
                 <span class="glyphicon glyphicon-heart"></span>
-                <span>{{data.getLikesCount()}}</span>
-                <span>Likes</span>
+                <span>{{ data.getLikesCount() }} Likes</span>
+            </p>
+            <p ng-click="$parent.commentPost()">
                 <span class="glyphicon glyphicon-comment"></span>
-                <span>{{data.getCommentsCount()}}</span>
+                <span>{{ data.getCommentsCount() }}</span>
                 <span>Comments</span>
-            </a>
+            </p>
         </div>
     </div>
 </div>

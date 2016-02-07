@@ -35,7 +35,7 @@
     </div>
 </header>
 <div class="container col-xs-offset-1 col-xs-10 main-section" data-ng-controller="postCtrl">
-    <blog-post data-ng-repeat="post in posts" data="post"></blog-post>
+    <blog-post data-ng-repeat="post in getPosts()" data="post"></blog-post>
 </div>
 <footer>
     <div class="container col-xs-offset-1 col-xs-10">
@@ -49,8 +49,12 @@
 <script type="text/javascript" src="/assets/plugins/bootstrap/js/bootstrap.js"></script>
 <script type="text/javascript" src="assets/plugins/angularjs/angular.js"></script>
 
+<!-- App -->
 <script type="text/javascript" src="/app/app.module.js"></script>
+
+<!-- Post -->
 <script type="text/javascript" src="/app/components/blog/postController.js"></script>
 <script type="text/javascript" src="/app/components/blog/post.js"></script>
+
 </body>
 </html>

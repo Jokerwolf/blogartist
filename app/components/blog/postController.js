@@ -2,8 +2,19 @@
  * Created by jokerwolf on 26/12/15.
  */
 angular.module('blog').controller('postCtrl',['$scope', '$sce', function($scope, $sce){
-    $scope.posts = initFakePosts($sce);
-    $scope.posts = $scope.posts.concat(initFakePosts($sce));
+    $scope.posts = initFakePosts($sce);;
+
+
+    $scope.getPosts = function (){
+        return $scope.posts;
+    };
+
+    $scope.likePost = function(index){
+        console.log('sdsds');
+    };
+    $scope.commentPost = function(){
+
+    };
 }])
 .directive('blogPost', function() {
     return {

@@ -49,6 +49,10 @@ html {
     margin-bottom: 40px;
 }
 
+.inline-children * {
+    display: inline-block;
+}
+
 .post {
     overflow-y: auto;
     border: transparent solid;
@@ -57,7 +61,7 @@ html {
     margin-bottom: 5px;
 }
 
-.post-footer a {
+.post-footer {
     text-decoration: none;
     color: #c0c0c0;
 }
