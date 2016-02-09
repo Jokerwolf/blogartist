@@ -1,21 +1,29 @@
 /**
  * Created by jokerwolf on 26/12/15.
  */
-angular.module('blog').controller('postCtrl',['$scope', '$sce', function($scope, $sce){
-    $scope.posts = initFakePosts($sce);;
+angular.module('blog').controller('postCtrl',['$scope', '$sce', '$http', function($scope, $sce, $http){
+        $scope.posts =
+            $http.get('/api/posts')
+                .success(function(data, status, header, config){
+                    $scope.posts = data.map(function(element){
+                        postFromJson(element);
+                    });
+                });
 
+        $scope.getPosts = function (){
+        };
 
-    $scope.getPosts = function (){
-        return $scope.posts;
-    };
+        $scope.likePost = function(index){
+            console.log('sdsds');
+        };
+        $scope.commentPost = function(){
 
-    $scope.likePost = function(index){
-        console.log('sdsds');
-    };
-    $scope.commentPost = function(){
+        };
 
-    };
-}])
+        function postFromJson(jsonData){
+            return new Post(jsonData.title, jsonData.postDate);
+        }
+    }])
 .directive('blogPost', function() {
     return {
         restrict: 'E',

@@ -1,0 +1,8 @@
+{
+    "name": "blogartist_server",
+    "version": "0.0.1",
+    "main": "server.js",
+    "dependencies": {
+        "express": "^4.11.0"
+    }
+}
