@@ -1,10 +1,11 @@
 /**
  * Created by jokerwolf on 26/12/15.
  */
-function Post(title, postDate){
+function Post(id, title, postDate, content){
+    this.id = id || -1;
     this.title = title || '';
     this.postDate = postDate || '';
-    this.content = '';
+    this.content = content || '';
     this.comments = [];
     this.likes = [];
 

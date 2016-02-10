@@ -1,14 +1,20 @@
 /**
  * Created by jokerwolf on 26/12/15.
  */
-angular.module('blog').controller('postCtrl',['$scope', '$sce', '$http', function($scope, $sce, $http){
-        $scope.posts =
-            $http.get('/api/posts')
-                .success(function(data, status, header, config){
-                    $scope.posts = data.map(function(element){
-                        postFromJson(element);
-                    });
-                });
+blogModule.controller('postCtrl',['$scope', '$sce', 'Posts', function($scope, $sce, Posts){
+        Posts.get(null, function(posts){
+            $scope.posts = posts.map(function(element){
+                return postFromJson(element);
+            });
+        });
+
+    /*
+     (function(data, status, header, config){
+     $scope.posts = data.map(function(element){
+     postFromJson(element);
+     });
+     });
+    * */
 
         $scope.getPosts = function (){
         };
@@ -21,19 +27,9 @@ angular.module('blog').controller('postCtrl',['$scope', '$sce', '$http', functio
         };
 
         function postFromJson(jsonData){
-            return new Post(jsonData.title, jsonData.postDate);
+            return new Post(jsonData.id, jsonData.title, jsonData.postDate, $sce.trustAsHtml(jsonData.content));
         }
-    }])
-.directive('blogPost', function() {
-    return {
-        restrict: 'E',
-        templateUrl: '/app/components/blog/post-template.html',
-        replace: true,
-        scope: {
-            data: '='
-        }
-    };
-});
+    }]);
 
 function initFakePosts($sce){
     var fakePosts = [];
@@ -49,7 +45,7 @@ function initFakePosts($sce){
         Curabitur eleifend lectus sit amet est fermentum volutpat.\
     </p>\
     <p>\
-    <img src="/assets/images/post-pic1.jpg"/>\
+    <img src="/app/assets/images/post-pic1.jpg"/>\
     </p>\
     <p>\
         Vivamus at purus at elit mattis egestas. Vestibulum consectetur mattis arcu at aliquet.\

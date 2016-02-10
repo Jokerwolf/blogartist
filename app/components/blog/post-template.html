@@ -1,13 +1,13 @@
 <div class="post">
     <div class="post-header">
         <h1>
-            {{ data.getTitle() }}
+            {{ data.title }}
         </h1>
         <div class="post-date">
-            {{ data.getPostDate() | date }}
+            {{ data.postDate | date }}
         </div>
     </div>
-    <div class="post-body" ng-bind-html="data.getContent()">
+    <div class="post-body" ng-bind-html="data.content">
     </div>
     <div class="post-footer">
         <div class="feedback-section pull-right inline-children">
