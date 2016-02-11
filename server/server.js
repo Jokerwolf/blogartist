@@ -54,7 +54,8 @@ app.get('/api/posts', function(request, response){
         Cras sagittis dolor a porta dapibus. Donec eget eros cursus, lacinia risus et, lobortis orci.\
         In at lobortis est, non tempus orci.\
     </p>'},
-        {id: 1, title: 'My second post', postDate: '2016-02-03T10:24:15', content: '<p>Just this actually</p>'}
+        {id: 1, title: 'My second post', postDate: '2016-02-03T10:24:15',
+            content: '<p>Just <strong>this</strong> actually</p>'}
     ];
     response.json(posts);
 });

@@ -9,7 +9,8 @@ blogModule.directive('blogPost', function() {
         templateUrl: '/components/blog/post-template.html',
         replace: true,
         scope: {
-            data: '='
+            data: '=',
+            index: '@'
         }
     };
 });
