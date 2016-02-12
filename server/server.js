@@ -8,16 +8,11 @@ var express = require('express');
 var path = require('path');
 var app = express();
 
-//app.use("/app",  express.static(path.join(__dirname, '../app')));
 app.use("/",  express.static(path.join(__dirname, '../app')));
 app.use("/assets",  express.static(path.join(__dirname, '../app/assets')));
 app.use("/components",  express.static(path.join(__dirname, '../app/components')));
 app.use("/images", express.static(path.join(__dirname, '../app/assets/images')));
 app.listen(8081);
-
-app.get('/', function(request, response){
-    response.sendFile(path.join(__dirname, '../app/', 'index.html'));
-});
 
 app.get('/api/posts', function(request, response){
     var posts = [

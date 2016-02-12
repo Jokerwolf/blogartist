@@ -9,6 +9,7 @@ blogModule.controller('postCtrl',['$scope', '$sce', 'Posts', function($scope, $s
         });
 
         $scope.likePost = function(index){
+            //TODO change to specific like add/remove
             if(!$scope.posts[index].isLiked){
                 $scope.posts[index].likes.push({});
                 $scope.posts[index].isLiked = true;
@@ -17,8 +18,8 @@ blogModule.controller('postCtrl',['$scope', '$sce', 'Posts', function($scope, $s
                 $scope.posts[index].isLiked = false;
             }
         };
-        $scope.commentPost = function(){
-            //todo do something
+        $scope.commentPost = function(index){
+            $scope.posts[index].isCommenting = !$scope.posts[index].isCommenting;
         };
 
         function postFromJson(jsonData){
