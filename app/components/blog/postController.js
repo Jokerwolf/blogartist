@@ -23,6 +23,7 @@ blogModule.controller('postCtrl',['$scope', '$sce', 'Posts', function($scope, $s
         };
 
         function postFromJson(jsonData){
-            return new Post(jsonData.id, jsonData.title, jsonData.postDate, $sce.trustAsHtml(jsonData.content));
+            return new Post(jsonData.id, jsonData.title, jsonData.postDate, $sce.trustAsHtml(jsonData.content),
+                jsonData.likes, jsonData.comments);
         }
     }]);

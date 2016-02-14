@@ -48,9 +48,10 @@ app.get('/api/posts', function(request, response){
         Suspendisse potenti.\
         Cras sagittis dolor a porta dapibus. Donec eget eros cursus, lacinia risus et, lobortis orci.\
         In at lobortis est, non tempus orci.\
-    </p>'},
+    </p>', likes: [{},{}], comments: [{}]},
         {id: 1, title: 'My second post', postDate: '2016-02-03T10:24:15',
-            content: '<p>Just <strong>this</strong> actually</p>'}
+            content: '<p>Just <strong>this</strong> actually</p>',
+            likes: [], comments: []}
     ];
     response.json(posts);
 });

@@ -1,13 +1,13 @@
 /**
  * Created by jokerwolf on 26/12/15.
  */
-function Post(id, title, postDate, content){
+function Post(id, title, postDate, content, likes, comments){
     this.id = id || -1;
     this.title = title || '';
     this.postDate = postDate || '';
     this.content = content || '';
-    this.comments = [];
-    this.likes = [];
+    this.comments = likes || [];
+    this.likes = comments || [];
 
     this.isLiked = false;
     this.isCommenting = true;

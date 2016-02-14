@@ -68,6 +68,7 @@ textarea {
 
 .post-footer {
     margin: auto;
+    padding: 1px;
     text-decoration: none;
     color: #c0c0c0;
 }
@@ -93,17 +94,17 @@ footer {
     text-align: right;
 }
 
-/*.comment-area input[type="text"],*/
-/*.comment-area textarea {*/
-    /*width: 100%;*/
-/*}*/
+.comment-area {
+    padding-left: 0px;
+    padding-right: 0px;
+}
 
 .comment-area .comment-container {
+    border: solid 1px;
     word-wrap: break-word;
 }
 
 .comment-area .comment-text-container {
-    border: solid 1px;
     display: inline-block;
     padding: 5px;
     width: 100%;
