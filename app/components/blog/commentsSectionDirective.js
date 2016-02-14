@@ -5,15 +5,22 @@
  */
 blogModule.directive('commentsSection', ['$sce', function($sce) {
     function manageInput($scope, element, attrs){
-        $scope.comment = $sce.trustAsHtml("Commnet here...");
-        var newComment = element.find('.comment-container');
-        element.on('focus', function(){
+        $scope.newComment;
 
+        var newCommentContainer = element.find('.new-comment-container');
+        newCommentContainer.on('focus', function(){
+            console.log('Add new comment');
+            window.getSelection().removeAllRanges();
         });
 
-        newComment.on('keydown', function(e){
+        newCommentContainer.on('keydown', function(e){
             if (e.ctrlKey && e.keyCode == 13){
-                console.log('Add new comment');
+                var newComment = newCommentContainer.html();
+                newCommentContainer.html('');
+                newCommentContainer.blur();
+                $scope.data.comments.push({text: $sce.trustAsHtml(newComment)});
+                window.getSelection().removeAllRanges();
+                $scope.$apply();
             }
         });
     }

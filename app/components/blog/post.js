@@ -6,8 +6,8 @@ function Post(id, title, postDate, content, likes, comments){
     this.title = title || '';
     this.postDate = postDate || '';
     this.content = content || '';
-    this.comments = likes || [];
-    this.likes = comments || [];
+    this.comments = comments || [];
+    this.likes = likes || [];
 
     this.isLiked = false;
     this.isCommenting = true;

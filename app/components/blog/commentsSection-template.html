@@ -1,11 +1,6 @@
 <div>
-    <div class="comment-container" contentEditable="true">
-        <span class="comment-text-container" ng-bind-html="comment"></span>
-    </div>
-    <div>
-        <span>Oh, I like it!</span>
-    </div>
-    <div>
-        <span>Nice one!</span>
+    <div class="new-comment-container" contentEditable="true" ng-bind-html="newComment"></div>
+    <div class="comment-container" data-ng-repeat="comment in data.comments">
+        <p ng-bind-html="comment.text"></p>
     </div>
 </div>

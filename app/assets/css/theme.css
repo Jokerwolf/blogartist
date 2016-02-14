@@ -99,12 +99,10 @@ footer {
     padding-right: 0px;
 }
 
-.comment-area .comment-container {
+.comment-area .new-comment-container {
     border: solid 1px;
     word-wrap: break-word;
-}
 
-.comment-area .comment-text-container {
     display: inline-block;
     padding: 5px;
     width: 100%;
