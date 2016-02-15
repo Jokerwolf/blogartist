@@ -102,8 +102,17 @@ footer {
 .comment-area .new-comment-container {
     border: solid 1px;
     word-wrap: break-word;
-
     display: inline-block;
     padding: 5px;
+    min-height: 35px;
     width: 100%;
+}
+
+.comment-area .comment-container {
+    color: #000000;
+    background: #adadad;
+    border: #747272 solid 1px;
+    color: #000000;
+    min-height: 30px;
+    padding: 5px;
 }

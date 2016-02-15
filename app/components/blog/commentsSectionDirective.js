@@ -5,20 +5,25 @@
  */
 blogModule.directive('commentsSection', ['$sce', function($sce) {
     function manageInput($scope, element, attrs){
-        $scope.newComment;
+        $scope.newComment = null;
 
         var newCommentContainer = element.find('.new-comment-container');
         newCommentContainer.on('focus', function(){
-            console.log('Add new comment');
-            window.getSelection().removeAllRanges();
+            if ($scope.newComment == null){
+                //newCommentContainer.html('');
+            }
+        });
+
+        newCommentContainer.on('blur', function(){
+            $scope.$apply();
         });
 
         newCommentContainer.on('keydown', function(e){
             if (e.ctrlKey && e.keyCode == 13){
-                var newComment = newCommentContainer.html();
                 newCommentContainer.html('');
                 newCommentContainer.blur();
-                $scope.data.comments.push({text: $sce.trustAsHtml(newComment)});
+
+                $scope.data.comments.push({text: $sce.trustAsHtml($scope.newComment)});
                 window.getSelection().removeAllRanges();
                 $scope.$apply();
             }
@@ -30,5 +35,11 @@ blogModule.directive('commentsSection', ['$sce', function($sce) {
         templateUrl: '/components/blog/commentsSection-template.html',
         replace: true,
         link: manageInput
+    };
+}]);
+
+blogModule.filter('newCommentFilter', ['$sce', function($sce){
+    return function(newComment){
+        return newComment == null ? $sce.trustAsHtml("Comment here") : $sce.trustAsHtml(newComment);
     };
 }]);
