@@ -3,30 +3,28 @@
  * Date: 12.02.16
  * Time: 16:45
  */
-blogModule.directive('commentsSection', ['$sce', function($sce) {
+blogModule.directive('commentsSection', [function($sce, $sanitize) {
     function manageInput($scope, element, attrs){
         $scope.newComment = null;
 
         var newCommentContainer = element.find('.new-comment-container');
         newCommentContainer.on('focus', function(){
             if ($scope.newComment == null){
-                //newCommentContainer.html('');
+                newCommentContainer.html('');
             }
-        });
-
-        newCommentContainer.on('blur', function(){
-            $scope.$apply();
         });
 
         newCommentContainer.on('keydown', function(e){
-            if (e.ctrlKey && e.keyCode == 13){
-                newCommentContainer.html('');
-                newCommentContainer.blur();
-
-                $scope.data.comments.push({text: $sce.trustAsHtml($scope.newComment)});
-                window.getSelection().removeAllRanges();
-                $scope.$apply();
-            }
+            $scope.$apply(function(){
+                if (e.ctrlKey && e.keyCode == 13){
+                    $scope.newComment = newCommentContainer.html();
+                    $scope.data.comments.push({text: ($scope.newComment)});
+                    newCommentContainer.html('');
+                    $scope.newComment = null;
+                    newCommentContainer.blur();
+                    window.getSelection().removeAllRanges();
+                }
+            });
         });
     }
 
@@ -38,8 +36,8 @@ blogModule.directive('commentsSection', ['$sce', function($sce) {
     };
 }]);
 
-blogModule.filter('newCommentFilter', ['$sce', function($sce){
+blogModule.filter('newCommentFilter', [function(){
     return function(newComment){
-        return newComment == null ? $sce.trustAsHtml("Comment here") : $sce.trustAsHtml(newComment);
+        return newComment == null ? "Comment here" : newComment;
     };
 }]);
