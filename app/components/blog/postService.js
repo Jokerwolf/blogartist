@@ -5,6 +5,7 @@
  */
 blogModule.factory('Posts', ['$resource', function($resource){
     return $resource('/api/posts', null, {
-        'get': { method:'GET', isArray: true }
+        'get': { method: 'GET', isArray: true },
+        'post': { method: 'POST'}
     });
 }]);

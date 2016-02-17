@@ -94,6 +94,15 @@ footer {
     text-align: right;
 }
 
+.post-footer .feedback-section .likes,
+.post-footer .feedback-section .comments {
+    cursor: pointer;
+}
+
+.post-footer .feedback-section .likes.active {
+    color: #216da9;
+}
+
 .comment-area {
     padding-left: 0px;
     padding-right: 0px;

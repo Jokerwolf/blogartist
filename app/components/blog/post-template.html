@@ -12,11 +12,11 @@
     <div class="post-footer">
         <div class="feedback-section inline-children
                     col-xs-offset-3 col-xs-9">
-            <p ng-click="$parent.likePost(index)">
+            <p ng-click="$parent.likePost(index)" class="likes" ng-class="{active: data.isLiked}">
                 <span class="glyphicon glyphicon-heart"></span>
                 <span>{{ data.getLikesCount() }} Likes</span>
             </p>
-            <p ng-click="$parent.commentPost(index)">
+            <p ng-click="$parent.commentPost(index)" class="comments">
                 <span class="glyphicon glyphicon-comment"></span>
                 <span>{{ data.getCommentsCount() }}</span>
                 <span>Comments</span>

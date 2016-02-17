@@ -10,7 +10,7 @@ function Post(id, title, postDate, content, likes, comments){
     this.likes = likes || [];
 
     this.isLiked = false;
-    this.isCommenting = true;
+    this.isCommenting = false;
 
     this.setTitle = function(title){
         this.title = title;
