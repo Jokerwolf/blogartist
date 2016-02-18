@@ -1,0 +1,12 @@
+{
+    "name": "blogartist",
+    "version": "0.0.1",
+    "dependencies": {
+        "angular": "latest",
+        "jquery": "latest",
+        "bootstrap": "latest",
+        "angular-route": "latest",
+        "angular-resource": "latest",
+        "angular-sanitize": "latest"
+    }
+}

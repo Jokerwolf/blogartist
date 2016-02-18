@@ -3,7 +3,7 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
-    <link rel="stylesheet" type="text/css" href="assets/plugins/bootstrap/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/plugins/bootstrap/dist/css/bootstrap.css"/>
     <link rel="stylesheet" type="text/css" href="assets/css/theme.css"/>
 </head>
 <body data-ng-app="blog">
@@ -47,12 +47,14 @@
     </div>
 </footer>
 
-<script type="text/javascript" src="assets/plugins/jquery/jquery-2.1.4.js"></script>
-<script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.js"></script>
-<script type="text/javascript" src="assets/plugins/angularjs/angular.js"></script>
-<script type="text/javascript" src="assets/plugins/angularjs/angular-route.js"></script>
-<script type="text/javascript" src="assets/plugins/angularjs/angular-resource.js"></script>
-<script type="text/javascript" src="assets/plugins/angularjs/angular-sanitize.js"></script>
+<script type="text/javascript" src="assets/plugins/jquery/dist/jquery.js"></script>
+<script type="text/javascript" src="assets/plugins/bootstrap/dist/js/bootstrap.js"></script>
+<script type="text/javascript" src="assets/plugins/angular/angular.js"></script>
+<script type="text/javascript" src="assets/plugins/angular-route/angular-route.js"></script>
+<script type="text/javascript" src="assets/plugins/angular-resource/angular-resource.js"></script>
+<script type="text/javascript" src="assets/plugins/angular-sanitize/angular-sanitize.js"></script>
+
+<script type="text/javascript" src="assets/plugins/socketsio/socket.io.js"></script>
 
 <!-- App -->
 <script type="text/javascript" src="app.module.js"></script>
@@ -64,6 +66,14 @@
 <script type="text/javascript" src="components/blog/commentsSectionDirective.js"></script>
 
 <script type="text/javascript" src="components/blog/post.js"></script>
+
+<script>
+    var socket = io('http://localhost:8081');
+    socket.on('commentsReady', function (data) {
+        console.log(data);
+//        socket.emit('my other event', { my: 'data' });
+    });
+</script>
 
 </body>
 </html>

@@ -8,6 +8,7 @@ var connection = require('./dbConnection.js');
 /*** Prepare statements ***/
 var preparedStatements = {};
 preparedStatements['getPosts'] = "SELECT * FROM posts";
+preparedStatements['getComments'] = "SELECT * FROM comments WHERE post_id = ?";
 /*** Prepare statements end ***/
 var dbController = function(){
     var self = this;
@@ -19,8 +20,8 @@ var dbController = function(){
         connection.end();
     };
 
-    self.callStatement = function(name, callback){
-        connection.query(preparedStatements[name], function(err, rows, fields) {
+    self.callStatement = function(name, params, callback){
+        connection.query(preparedStatements[name], params, function(err, rows, fields) {
             if (!err){
                 callback(rows);
             } else {
