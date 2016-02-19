@@ -67,13 +67,5 @@
 
 <script type="text/javascript" src="components/blog/post.js"></script>
 
-<script>
-    var socket = io('http://localhost:8081');
-    socket.on('commentsReady', function (data) {
-        console.log(data);
-//        socket.emit('my other event', { my: 'data' });
-    });
-</script>
-
 </body>
 </html>

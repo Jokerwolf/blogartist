@@ -10,6 +10,7 @@ var preparedStatements = {};
 preparedStatements['getPosts'] = "SELECT * FROM posts";
 preparedStatements['getComments'] = "SELECT * FROM comments WHERE post_id = ?";
 /*** Prepare statements end ***/
+
 var dbController = function(){
     var self = this;
 

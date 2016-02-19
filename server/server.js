@@ -31,6 +31,21 @@ io.on('connection', function (socket) {
 //    });
 });
 
+function loadComments(post){
+    dbController.callStatement('getComments', [post.id], function(rows){
+        for (var i = 0; i < rows.length; i++){
+            var comment = {};
+            for(var prop in rows[i]){
+                if (rows[i].hasOwnProperty(prop)){
+                    comment[prop] = rows[i][prop];
+                }
+            }
+            post.comments.push(comment);
+        }
+        io.emit('commentsReady', {postId: post.id, comments: post.comments});
+    });
+}
+
 app.get('/api/posts', function(request, response){
     var posts = [];
     dbController.callStatement('getPosts', null, function(rows){
@@ -42,19 +57,8 @@ app.get('/api/posts', function(request, response){
                     post[prop] = rows[i][prop];
                 }
             }
-            dbController.callStatement('getComments', [post.id], function(rows){
-                for (var i = 0; i < rows.length; i++){
-                    var comment = {};
-                    for(var prop in rows[i]){
-                        if (rows[i].hasOwnProperty(prop)){
-                            comment[prop] = rows[i][prop];
-                        }
-                    }
-                    post.comments.push(comment);
-                }
-                io.emit('commentsReady', post.comments);
-            });
             posts.push(post);
+            loadComments(post);
         }
         response.json(posts);
     });
