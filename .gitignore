@@ -1,2 +1,5 @@
 /server/db/dbConnection.js
 
+/server/node_modules
+/app/assets/plugins
+/app/node_modules
