@@ -1,6 +1,6 @@
 <div>
     <div class="new-comment-container" contentEditable="true" ng-bind-html="newComment | newCommentFilter"></div>
     <div class="comment-container" data-ng-repeat="comment in data.comments">
-        <p ng-bind-html="comment.text"></p>
+        <p ng-bind-html="comment.content"></p>
     </div>
 </div>
