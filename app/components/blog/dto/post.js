@@ -1,59 +1,43 @@
 /**
  * Created by jokerwolf on 26/12/15.
  */
-function Post(id, title, postDate, content, likes, comments){
-    this.id = id || -1;
-    this.title = title || '';
-    this.postDate = postDate || '';
-    this.content = content || '';
-    this.comments = comments || [];
-    this.likes = likes || [];
 
-    this.isLiked = false;
-    this.isCommenting = false;
+var post = (function(){
+    var postTemplate = {
+        id: -1,
+        title: '',
+        postDate: '',
+        content: '',
+        comments: [],
+        likes: [],
 
-    this.setTitle = function(title){
-        this.title = title;
-    };
-    this.getTitle = function(){
-        return this.title;
-    };
+        //TODO Remove from here
+        isLiked: false,
+        isCommenting: false,
 
-    this.setPostDate = function(postDate){
-        this.postDate = postDate;
-    };
-    this.getPostDate = function(){
-        return this.postDate;
+        getLikesCount: function(){
+            return this.likes != null ? this.likes.length : 0;
+        },
+        getCommentsCount: function(){
+            return this.comments != null ? this.comments.length : 0;
+        }
     };
 
-    this.setContent = function(content){
-        this.content = content;
+    return function(){
+        return {
+            get: function(id, title, postDate, content, comments, likes){
+                return Object.assign(Object.create(postTemplate), {
+                    id: id,
+                    title: title,
+                    postDate: postDate,
+                    content: content,
+                    comments: comments,
+                    likes: likes
+                });
+            },
+            fromJson: function(jsonData){
+                return this.get(jsonData.id, jsonData.title, jsonData.postDate, jsonData.content);
+            }
+        };
     };
-    this.getContent = function(){
-        return this.content;
-    };
-
-    this.addComment = function(comment){
-        this.comments.push(comment);
-    };
-
-    this.addLike = function(like){
-        this.likes.push(like);
-    };
-
-    this.setComments = function(comments){
-        this.comments = comments;
-    };
-
-    this.setLikes = function(likes){
-        this.likes = likes;
-    };
-
-    this.getLikesCount = function(){
-        return this.likes != null ? this.likes.length : 0;
-    };
-
-    this.getCommentsCount = function(){
-        return this.comments != null ? this.comments.length : 0;
-    };
-}
+})();
