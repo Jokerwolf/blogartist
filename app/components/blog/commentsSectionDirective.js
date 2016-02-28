@@ -18,7 +18,7 @@ blogModule.directive('commentsSection', [function($sce, $sanitize) {
             $scope.$apply(function(){
                 if (e.ctrlKey && e.keyCode == 13){
                     $scope.newComment = newCommentContainer.html();
-                    $scope.data.comments.push({text: ($scope.newComment)});
+                    $scope.data.comments.push({content: ($scope.newComment)});
                     newCommentContainer.html('');
                     $scope.newComment = null;
                     newCommentContainer.blur();
