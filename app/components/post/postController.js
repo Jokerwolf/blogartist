@@ -8,21 +8,11 @@ blogModule.controller('postCtrl',['$scope', '$sce', 'Posts', 'PostsSocket', func
         })[0].comments = data.comments;
     });
 
-    Posts.get(null, function (posts) {
+    Posts.query(null, function (posts) {
         $scope.posts = posts.map(function (element) {
             return post().fromJson(element);
         });
     });
-
-
-    //$scope.$watchCollection('data.comments', function(newComments, oldComments) {
-    //    //if (((oldComments == null || oldComments === undefined) && newComments != null) ||
-    //    //    (oldComments != null && (newComments == null || newComments === undefined)) ||
-    //    //    (oldComments.length != newComments.length)){
-    //        //need to save changes
-    //        console.log('saving...');
-    //    //}
-    //});
 
     $scope.likePost = function (index) {
         //TODO change to specific like add/remove

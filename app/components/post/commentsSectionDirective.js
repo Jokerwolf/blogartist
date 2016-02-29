@@ -3,28 +3,32 @@
  * Date: 12.02.16
  * Time: 16:45
  */
-blogModule.directive('commentsSection', function() {
+blogModule.directive('commentsSection', ['Comments', function(Comments) {
     function manageInput($scope, element, attrs){
-        $scope.newComment = null;
+        $scope.newComment = {};
 
         var newCommentContainer = element.find('.new-comment-container');
         newCommentContainer.on('focus', function(){
-            if ($scope.newComment == null){
+            if ($scope.newComment.content == null){
                 newCommentContainer.html('');
             }
         });
 
         newCommentContainer.on('keydown', function(e){
-            $scope.$apply(function(){
-                if (e.ctrlKey && e.keyCode == 13){
-                    $scope.newComment = newCommentContainer.html();
-                    $scope.data.comments.push({content: ($scope.newComment)});
+            if (e.ctrlKey && e.keyCode == 13) {
+                $scope.$apply(function () {
+                    $scope.newComment = {post_id: $scope.data.id, content: newCommentContainer.html()};
+                    $scope.data.comments.push($scope.newComment);
+
+                    Comments.save($scope.newComment);
+
                     newCommentContainer.html('');
-                    $scope.newComment = null;
+                    $scope.newComment = {};
+
                     newCommentContainer.blur();
                     window.getSelection().removeAllRanges();
-                }
-            });
+                });
+            }
         });
     }
 
@@ -34,4 +38,4 @@ blogModule.directive('commentsSection', function() {
         replace: true,
         link: manageInput
     };
-});
+}]);

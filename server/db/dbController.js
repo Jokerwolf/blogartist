@@ -9,6 +9,7 @@ var connection = require('./dbConnection.js');
 var preparedStatements = {};
 preparedStatements['getPosts'] = "SELECT * FROM posts";
 preparedStatements['getComments'] = "SELECT * FROM comments WHERE post_id = ?";
+preparedStatements['addComment'] = "INSERT INTO comments (post_id, author, content) VALUES (?, ?, ?)";
 /*** Prepare statements end ***/
 
 var dbController = function(){
@@ -27,6 +28,7 @@ var dbController = function(){
                 callback(rows);
             } else {
                 console.log('Error while performing Query.');
+                console.log(err);
             }
         });
     };
