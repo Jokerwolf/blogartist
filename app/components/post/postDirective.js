@@ -6,7 +6,7 @@
 blogModule.directive('blogPost', function() {
     return {
         restrict: 'E',
-        templateUrl: '/components/blog/post-template.html',
+        templateUrl: '/components/post/post-template.html',
         replace: true,
         scope: {
             data: '=',

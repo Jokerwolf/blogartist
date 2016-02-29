@@ -3,7 +3,7 @@
  * Date: 12.02.16
  * Time: 16:45
  */
-blogModule.directive('commentsSection', [function($sce, $sanitize) {
+blogModule.directive('commentsSection', function() {
     function manageInput($scope, element, attrs){
         $scope.newComment = null;
 
@@ -30,14 +30,8 @@ blogModule.directive('commentsSection', [function($sce, $sanitize) {
 
     return {
         restrict: 'E',
-        templateUrl: '/components/blog/commentsSection-template.html',
+        templateUrl: '/components/post/commentsSection-template.html',
         replace: true,
         link: manageInput
     };
-}]);
-
-blogModule.filter('newCommentFilter', [function(){
-    return function(newComment){
-        return newComment == null ? "Comment here" : newComment;
-    };
-}]);
+});

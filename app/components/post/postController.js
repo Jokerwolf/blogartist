@@ -1,10 +1,8 @@
 /**
  * Created by jokerwolf on 26/12/15.
  */
-blogModule.controller('postCtrl',['$scope', '$sce', 'Posts', function($scope, $sce, Posts) {
-    var socket = io('http://localhost:8081');
-
-    socket.on('commentsReady', function (data) {
+blogModule.controller('postCtrl',['$scope', '$sce', 'Posts', 'PostsSocket', function($scope, $sce, Posts, PostsSocket) {
+    PostsSocket.on('commentsReady', function (data) {
         $scope.posts.filter((p) => {
             return p.id == data.postId
         })[0].comments = data.comments;
@@ -17,14 +15,14 @@ blogModule.controller('postCtrl',['$scope', '$sce', 'Posts', function($scope, $s
     });
 
 
-    $scope.$watchCollection('data.comments', function(newComments, oldComments) {
-        //if (((oldComments == null || oldComments === undefined) && newComments != null) ||
-        //    (oldComments != null && (newComments == null || newComments === undefined)) ||
-        //    (oldComments.length != newComments.length)){
-            //need to save changes
-            console.log('saving...');
-        //}
-    });
+    //$scope.$watchCollection('data.comments', function(newComments, oldComments) {
+    //    //if (((oldComments == null || oldComments === undefined) && newComments != null) ||
+    //    //    (oldComments != null && (newComments == null || newComments === undefined)) ||
+    //    //    (oldComments.length != newComments.length)){
+    //        //need to save changes
+    //        console.log('saving...');
+    //    //}
+    //});
 
     $scope.likePost = function (index) {
         //TODO change to specific like add/remove
