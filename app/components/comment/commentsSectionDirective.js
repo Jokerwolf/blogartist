@@ -3,7 +3,7 @@
  * Date: 12.02.16
  * Time: 16:45
  */
-blogModule.directive('commentsSection', ['CommentSocket', function(CommentSocket) {
+blogModule.directive('commentsSection', ['Socket', function(Socket) {
     function commentsSectionLink($scope, element, attrs){
         $scope.newComment = {};
 
@@ -20,7 +20,7 @@ blogModule.directive('commentsSection', ['CommentSocket', function(CommentSocket
                     $scope.newComment = { post_id: $scope.data.id, content: newCommentContainer.html() };
                     $scope.data.comments.push($scope.newComment);
 
-                    CommentSocket.emit('newComment', $scope.newComment);
+                    Socket.emit('newComment', $scope.newComment);
 
                     newCommentContainer.html('');
                     $scope.newComment = {};

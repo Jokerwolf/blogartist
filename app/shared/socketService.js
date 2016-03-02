@@ -1,7 +1,7 @@
 /**
  * Created by jokerwolf on 28/02/16.
  */
-blogModule.factory('CommentSocket', ['$rootScope', 'serverURL', function($rootScope, serverURL) {
+blogModule.factory('Socket', ['$rootScope', 'serverURL', function($rootScope, serverURL) {
     var socket = io.connect(serverURL);
 
     return {
