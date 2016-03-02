@@ -3,7 +3,7 @@
  * Date: 12.02.16
  * Time: 16:45
  */
-blogModule.directive('commentsSection', ['Comments', function(Comments) {
+blogModule.directive('commentsSection', ['CommentSocket', function(CommentSocket) {
     function manageInput($scope, element, attrs){
         $scope.newComment = {};
 
@@ -17,10 +17,10 @@ blogModule.directive('commentsSection', ['Comments', function(Comments) {
         newCommentContainer.on('keydown', function(e){
             if (e.ctrlKey && e.keyCode == 13) {
                 $scope.$apply(function () {
-                    $scope.newComment = {post_id: $scope.data.id, content: newCommentContainer.html()};
+                    $scope.newComment = { post_id: $scope.id, content: newCommentContainer.html() };
                     $scope.data.comments.push($scope.newComment);
 
-                    Comments.save($scope.newComment);
+                    CommentSocket.emit('newComment', $scope.newComment);
 
                     newCommentContainer.html('');
                     $scope.newComment = {};
@@ -34,7 +34,10 @@ blogModule.directive('commentsSection', ['Comments', function(Comments) {
 
     return {
         restrict: 'E',
-        templateUrl: '/components/post/commentsSection-template.html',
+        templateUrl: '/components/comment/commentsSection-template.html',
+        scope: {
+            data: '=',
+        },
         replace: true,
         link: manageInput
     };

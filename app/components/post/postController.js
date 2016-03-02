@@ -1,13 +1,7 @@
 /**
  * Created by jokerwolf on 26/12/15.
  */
-blogModule.controller('postCtrl',['$scope', '$sce', 'Posts', 'PostsSocket', function($scope, $sce, Posts, PostsSocket) {
-    PostsSocket.on('commentsReady', function (data) {
-        $scope.posts.filter((p) => {
-            return p.id == data.postId
-        })[0].comments = data.comments;
-    });
-
+blogModule.controller('postCtrl',['$scope', '$sce', 'Posts', 'CommentSocket', function($scope, $sce, Posts, CommentSocket) {
     Posts.query(null, function (posts) {
         $scope.posts = posts.map(function (element) {
             return post().fromJson(element);

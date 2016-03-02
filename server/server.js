@@ -27,10 +27,22 @@ var io = require('socket.io').listen(server);
 
 io.on('connection', function (socket) {
     console.log('connected');
+    socket.on('readyForComments', function(postId){
+        loadComments(postId)
+    });
+    socket.on('newComment', function (comment) {
+        dbController.callStatement('addComment',
+            [ comment.post_id, 'Anonymous', comment.content ],
+            function(result){
+                comment.id = result.insertId;
+                socket.emit('commentSaved', comment);
+            });
+    });
 });
 
-function loadComments(post){
-    dbController.callStatement('getComments', [post.id], function(rows){
+function loadComments(postId){
+    var comments = [];
+    dbController.callStatement('getComments', [postId], function(rows){
         for (var i = 0; i < rows.length; i++){
             var comment = {};
             for(var prop in rows[i]){
@@ -38,9 +50,11 @@ function loadComments(post){
                     comment[prop] = rows[i][prop];
                 }
             }
-            post.comments.push(comment);
+            comments.push(comment);
         }
-        io.emit('commentsReady', { postId: post.id, comments: post.comments });
+        console.log('emitting comments:' + 'commentsReady:' + postId);
+
+        io.emit('commentsReady:' + postId, comments);
     });
 }
 
@@ -55,7 +69,7 @@ app.get('/api/posts', function(request, response){
                 }
             }
             posts.push(post);
-            loadComments(post);
+            //loadComments(post);
         }
         response.json(posts);
     });

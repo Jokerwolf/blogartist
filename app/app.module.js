@@ -4,3 +4,4 @@
  * Time: 13:40
  */
 var blogModule = angular.module('blog', ['ngRoute', 'ngResource', 'ngSanitize']);
+blogModule.constant('serverURL', 'http://localhost:8081');

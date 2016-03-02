@@ -3,9 +3,9 @@
     "version": "0.0.1",
     "main": "server.js",
     "dependencies": {
-        "express": "latest",
-        "socket.io": "latest",
-        "mysql": "latest",
-        "body-parser": "latest"
+      "express": "latest",
+      "body-parser": "latest",
+      "socket.io": "latest",
+      "mysql": "latest"
     }
 }
