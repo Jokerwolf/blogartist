@@ -31,8 +31,8 @@ var post = (function(){
                     title: title,
                     postDate: postDate,
                     content: content,
-                    comments: comments,
-                    likes: likes
+                    comments: comments || [],
+                    likes: likes || []
                 });
             },
             fromJson: function(jsonData){

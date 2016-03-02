@@ -4,10 +4,8 @@
  * Time: 15:26
  */
 blogModule.controller('commentCtrl',['$scope', 'CommentSocket', function($scope, CommentSocket) {
-    var readyEventName = 'commentsReady:' + $scope.data.id;
-    $scope.data.comments = [];
 
-    CommentSocket.on(readyEventName, function(comments){
+    CommentSocket.on('commentsReady:' + $scope.data.id, function(comments){
         console.log('commentsReady');
         $scope.data.comments = comments;
     });

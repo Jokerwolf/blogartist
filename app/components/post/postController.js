@@ -1,7 +1,7 @@
 /**
  * Created by jokerwolf on 26/12/15.
  */
-blogModule.controller('postCtrl',['$scope', '$sce', 'Posts', 'CommentSocket', function($scope, $sce, Posts, CommentSocket) {
+blogModule.controller('postCtrl',['$scope', '$sce', 'Posts', function($scope, $sce, Posts) {
     Posts.query(null, function (posts) {
         $scope.posts = posts.map(function (element) {
             return post().fromJson(element);
@@ -18,6 +18,7 @@ blogModule.controller('postCtrl',['$scope', '$sce', 'Posts', 'CommentSocket', fu
             $scope.posts[index].isLiked = false;
         }
     };
+
     $scope.commentPost = function (index) {
         $scope.posts[index].isCommenting = !$scope.posts[index].isCommenting;
     };
