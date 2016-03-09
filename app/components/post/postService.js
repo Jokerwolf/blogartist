@@ -6,7 +6,3 @@
 blogModule.factory('Posts', ['$resource', function($resource){
     return $resource('/api/posts');
 }]);
-
-blogModule.factory('Comments', ['$resource', function($resource){
-    return $resource('/api/comments');
-}]);
