@@ -22,8 +22,6 @@
                 <span>Comments</span>
             </p>
         </div>
-        <div class="comment-area" ng-show="data.isCommenting" data-ng-controller="commentCtrl">
-            <comments-section></comments-section>
-        </div>
+        <comments-section class="comment-area" ng-show="data.isCommenting" data-ng-controller="commentCtrl"></comments-section>
     </div>
 </div>

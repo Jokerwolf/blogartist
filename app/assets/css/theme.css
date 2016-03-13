@@ -70,7 +70,6 @@ textarea {
     margin: auto;
     padding: 1px;
     text-decoration: none;
-    color: #c0c0c0;
 }
 
 .post-date {
@@ -85,9 +84,11 @@ footer {
     height: 35px;
     text-align: center;
 }
+
 .feedback-section {
     padding-left: 0px;
     padding-right: 0px;
+    color: #c0c0c0;
 }
 
 .post-footer .feedback-section {
@@ -103,13 +104,24 @@ footer {
     color: #216da9;
 }
 
-.comment-area {
-    padding-left: 0px;
+.relative-container {
+    position: relative;
+}
+
+.no-right-padding {
     padding-right: 0px;
 }
 
+.bottom-right-align {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+
+}
+
 .comment-area .new-comment-container {
-    border: solid 1px;
+    border: #a4a2a2 solid 1px;
+    border-radius: 4px;
     word-wrap: break-word;
     display: inline-block;
     padding: 5px;
@@ -121,9 +133,9 @@ footer {
 }
 
 .comment-area .comment-container {
-    color: #000000;
-    background: #adadad;
-    border: #747272 solid 1px;
+    background: #f1f1f1;
+    border: #a4a2a2 solid 1px;
+    border-radius: 4px;
     min-height: 30px;
     padding: 5px;
 }
