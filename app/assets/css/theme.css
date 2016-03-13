@@ -114,7 +114,10 @@ footer {
     display: inline-block;
     padding: 5px;
     min-height: 35px;
-    width: 100%;
+}
+
+.comment-area button{
+    min-height: 35px;
 }
 
 .comment-area .comment-container {
@@ -124,16 +127,6 @@ footer {
     min-height: 30px;
     padding: 5px;
 }
-
-/*@media (min-width: 768px) {*/
-    /*.post{*/
-        /*overflow-y: auto;*/
-        /*margin-bottom: 5px;*/
-        /*border: none;*/
-        /*border-radius: 0;*/
-        /*box-shadow: none;*/
-    /*}*/
-/*}*/
 
 /* ----------- iPhone 4 and 4S ----------- */
 

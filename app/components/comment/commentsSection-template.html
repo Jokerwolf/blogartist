@@ -1,6 +1,10 @@
-<div>
-    <div class="new-comment-container" contentEditable="true" ng-bind-html="newComment.content | newCommentFilter"></div>
-    <div class="comment-container" data-ng-repeat="comment in data.comments">
+<div class="container-fluid">
+    <div class="row">
+        <div class="new-comment-container col-sm-11" contentEditable="true"
+             ng-bind-html="newComment.content | newCommentFilter"></div>
+        <button class="col-sm-1 btn" data-ng-click="addNewComment()">Done</button>
+    </div>
+    <div class="row comment-container col-sm-12" data-ng-repeat="comment in data.comments">
         <p ng-bind-html="comment.content"></p>
     </div>
 </div>
