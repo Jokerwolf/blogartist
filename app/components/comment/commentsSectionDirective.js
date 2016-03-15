@@ -12,8 +12,8 @@ function commentsSectionDirective(Socket) {
         scope.newComment = {};
 
         scope.addNewComment = function(){
-            scope.newComment = { post_id: scope.vm.id, content: newCommentContainer.html() };
-            scope.vm.comments.push(scope.newComment);
+            scope.newComment = { post_id: scope.id, content: newCommentContainer.html() };
+            scope.comments.push(scope.newComment);
 
             Socket.emit('newComment', scope.newComment);
 

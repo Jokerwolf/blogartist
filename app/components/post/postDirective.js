@@ -14,7 +14,7 @@ function blogPostDirective(){
             vm: '='
         },
         link: link
-    }
+    };
 
     function link(scope, el, attr, ctrl){
         scope.likePost = function () {
@@ -29,6 +29,7 @@ function blogPostDirective(){
         };
 
         scope.commentPost = function () {
+            console.log(scope.vm.isCommenting);
             scope.vm.isCommenting = !scope.vm.isCommenting;
         };
     }

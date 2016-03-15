@@ -7,8 +7,6 @@ angular.module('blogArtist.blog').controller('CommentController', CommentControl
 CommentController.$inject = ['$scope', 'Socket'];
 
 function CommentController($scope, Socket) {
-    var vm = this;
-
     Socket.on('commentsReady:' + $scope.vm.id, function(comments){
         $scope.vm.comments = comments;
     });
