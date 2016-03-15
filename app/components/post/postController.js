@@ -1,25 +1,23 @@
 /**
  * Created by jokerwolf on 26/12/15.
  */
-blogModule.controller('postCtrl',['$scope', '$sce', 'Posts', function($scope, $sce, Posts) {
-    Posts.query(null, function (posts) {
-        $scope.posts = posts.map(function (element) {
-            return post().fromJson(element);
+(function(){
+angular.module('blogArtist.blog').controller('PostController',  PostController);
+
+PostController.$inject = ['Posts'];
+
+function PostController(Posts) {
+    var vm = this;
+    vm.posts = [];
+
+    activate();
+
+    function activate(){
+        Posts.query(null, function (posts) {
+            vm.posts = posts.map(function (element) {
+                return post().fromJson(element);
+            });
         });
-    });
-
-    $scope.likePost = function (index) {
-        //TODO change to specific like add/remove
-        if (!$scope.posts[index].isLiked) {
-            $scope.posts[index].likes.push({});
-            $scope.posts[index].isLiked = true;
-        } else {
-            $scope.posts[index].likes.pop();
-            $scope.posts[index].isLiked = false;
-        }
-    };
-
-    $scope.commentPost = function (index) {
-        $scope.posts[index].isCommenting = !$scope.posts[index].isCommenting;
-    };
-}]);
+    }
+}
+})();

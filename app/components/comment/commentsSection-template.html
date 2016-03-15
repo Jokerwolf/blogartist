@@ -6,7 +6,7 @@
             <button class="btn btn-block" data-ng-click="addNewComment()">Done</button>
         </div>
     </div>
-    <div class="row comment-container" data-ng-repeat="comment in data.comments">
+    <div class="row comment-container" data-ng-repeat="comment in vm.comments">
         <span ng-bind-html="comment.content"></span>
     </div>
 </div>

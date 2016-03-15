@@ -3,5 +3,9 @@
  * Date: 09.12.15
  * Time: 13:40
  */
-var blogModule = angular.module('blog', ['ngRoute', 'ngResource', 'ngSanitize']);
-blogModule.constant('serverURL', 'http://localhost:8081');
+angular.module('blogArtist.blog', ['ngResource', 'ngSanitize'])
+    .constant('serverURL', 'http://localhost:8081');
+angular.module('blogArtist.admin', []);
+angular.module('blogArtist.login', []);
+
+angular.module('blogArtist', ['blogArtist.blog', 'blogArtist.admin', 'blogArtist.login']);

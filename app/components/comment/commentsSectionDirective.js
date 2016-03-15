@@ -3,18 +3,22 @@
  * Date: 12.02.16
  * Time: 16:45
  */
-blogModule.directive('commentsSection', ['Socket', function(Socket) {
-    function commentsSectionLink($scope, element, attrs){
-        $scope.newComment = {};
+angular.module('blogArtist.blog').directive('commentsSection', commentsSectionDirective);
 
-        $scope.addNewComment = function(){
-            $scope.newComment = { post_id: $scope.data.id, content: newCommentContainer.html() };
-            $scope.data.comments.push($scope.newComment);
+commentsSectionDirective.$inject = ['Socket'];
 
-            Socket.emit('newComment', $scope.newComment);
+function commentsSectionDirective(Socket) {
+    function link(scope, element, attrs){
+        scope.newComment = {};
+
+        scope.addNewComment = function(){
+            scope.newComment = { post_id: scope.vm.id, content: newCommentContainer.html() };
+            scope.vm.comments.push(scope.newComment);
+
+            Socket.emit('newComment', scope.newComment);
 
             newCommentContainer.html('');
-            $scope.newComment = {};
+            scope.newComment = {};
 
             newCommentContainer.blur();
             window.getSelection().removeAllRanges();
@@ -22,14 +26,14 @@ blogModule.directive('commentsSection', ['Socket', function(Socket) {
 
         var newCommentContainer = element.find('.new-comment-container');
         newCommentContainer.on('focus', function(){
-            if ($scope.newComment.content == null){
+            if (scope.newComment.content == null){
                 newCommentContainer.html('');
             }
         });
 
         newCommentContainer.on('keydown', function(e){
             if (e.ctrlKey && e.keyCode == 13) {
-                $scope.$apply($scope.addNewComment());
+                scope.$apply(scope.addNewComment());
             }
         });
     }
@@ -38,6 +42,6 @@ blogModule.directive('commentsSection', ['Socket', function(Socket) {
         restrict: 'E',
         templateUrl: '/components/comment/commentsSection-template.html',
         replace: true,
-        link: commentsSectionLink
+        link: link
     };
-}]);
+}

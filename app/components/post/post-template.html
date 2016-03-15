@@ -1,27 +1,29 @@
 <div class="post">
     <div class="post-header">
         <h1>
-            {{ data.title }}
+            {{ vm.title }}
         </h1>
         <div class="post-date">
-            {{ data.postDate | date }}
+            {{ vm.postDate | date }}
         </div>
     </div>
-    <div class="post-body" ng-bind-html="data.content">
+    <div class="post-body" ng-bind-html="vm.content">
     </div>
     <div class="post-footer">
         <div class="feedback-section inline-children
                     col-xs-offset-3 col-xs-9">
-            <p ng-click="$parent.likePost(index)" class="likes" ng-class="{active: data.isLiked}">
+            <p ng-click="likePost()" class="likes" ng-class="{active: vm.isLiked}">
                 <span class="glyphicon glyphicon-heart"></span>
-                <span>{{ data.getLikesCount() }} Likes</span>
+                <span>{{ vm.getLikesCount() }} Likes</span>
             </p>
-            <p ng-click="$parent.commentPost(index)" class="comments">
+            <p ng-click="commentPost()" class="comments">
                 <span class="glyphicon glyphicon-comment"></span>
-                <span>{{ data.getCommentsCount() }}</span>
+                <span>{{ vm.getCommentsCount() }}</span>
                 <span>Comments</span>
             </p>
         </div>
-        <comments-section class="comment-area" ng-show="data.isCommenting" data-ng-controller="commentCtrl"></comments-section>
+        <comments-section class="comment-area" ng-show="vm.isCommenting"
+                          data-ng-controller="CommentController as comment">
+        </comments-section>
     </div>
 </div>

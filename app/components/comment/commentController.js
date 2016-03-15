@@ -3,12 +3,15 @@
  * Date: 01.03.2016
  * Time: 15:26
  */
-blogModule.controller('commentCtrl',['$scope', 'Socket', function($scope, Socket) {
+angular.module('blogArtist.blog').controller('CommentController', CommentController);
+CommentController.$inject = ['$scope', 'Socket'];
 
-    Socket.on('commentsReady:' + $scope.data.id, function(comments){
-        console.log('commentsReady');
-        $scope.data.comments = comments;
+function CommentController($scope, Socket) {
+    var vm = this;
+
+    Socket.on('commentsReady:' + $scope.vm.id, function(comments){
+        $scope.vm.comments = comments;
     });
 
-    Socket.emit('readyForComments', $scope.data.id);
-}]);
+    Socket.emit('readyForComments', $scope.vm.id);
+}

@@ -1,7 +1,7 @@
 /**
  * Created by jokerwolf on 28/02/16.
  */
-blogModule.factory('Socket', ['$rootScope', 'serverURL', function($rootScope, serverURL) {
+angular.module('blogArtist.blog').factory('Socket', ['$rootScope', 'serverURL', function($rootScope, serverURL) {
     var socket = io.connect(serverURL);
 
     return {
