@@ -3,45 +3,47 @@
  * Date: 12.02.16
  * Time: 16:45
  */
-angular.module('blogArtist.blog').directive('commentsSection', commentsSectionDirective);
+(function() {
+    angular.module('blogArtist.blog').directive('commentsSection', commentsSectionDirective);
 
-commentsSectionDirective.$inject = ['Socket'];
+    commentsSectionDirective.$inject = ['socketService'];
 
-function commentsSectionDirective(Socket) {
-    function link(scope, element, attrs){
-        scope.newComment = {};
-
-        scope.addNewComment = function(){
-            scope.newComment = { post_id: scope.id, content: newCommentContainer.html() };
-            scope.comments.push(scope.newComment);
-
-            Socket.emit('newComment', scope.newComment);
-
-            newCommentContainer.html('');
-            scope.newComment = {};
-
-            newCommentContainer.blur();
-            window.getSelection().removeAllRanges();
+    function commentsSectionDirective(socketService) {
+        return {
+            restrict: 'E',
+            templateUrl: '/components/comment/commentsSection-template.html',
+            replace: true,
+            scope: true,
+            link: link
         };
 
-        var newCommentContainer = element.find('.new-comment-container');
-        newCommentContainer.on('focus', function(){
-            if (scope.newComment.content == null){
+        function link(scope, element, attrs) {
+            console.log(scope);
+            scope.addNewComment = function () {
+                scope.commentsVM.newComment = { post_id: scope.commentsVM.postId, content: newCommentContainer.html() };
+                scope.commentsVM.comments.push(scope.commentsVM.newComment);
+
+                socketService.emit('newComment', scope.commentsVM.newComment);
+
                 newCommentContainer.html('');
-            }
-        });
+                scope.commentsVM.newComment = {};
 
-        newCommentContainer.on('keydown', function(e){
-            if (e.ctrlKey && e.keyCode == 13) {
-                scope.$apply(scope.addNewComment());
-            }
-        });
+                newCommentContainer.blur();
+                window.getSelection().removeAllRanges();
+            };
+
+            var newCommentContainer = element.find('.new-comment-container');
+            newCommentContainer.on('focus', function () {
+                if (scope.commentsVM.newComment.content == null) {
+                    newCommentContainer.html('');
+                }
+            });
+
+            newCommentContainer.on('keydown', function (e) {
+                if (e.ctrlKey && e.keyCode == 13) {
+                    scope.$apply(scope.addNewComment());
+                }
+            });
+        }
     }
-
-    return {
-        restrict: 'E',
-        templateUrl: '/components/comment/commentsSection-template.html',
-        replace: true,
-        link: link
-    };
-}
+})();

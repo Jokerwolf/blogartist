@@ -1,12 +1,12 @@
 <div class="container-fluid col-xs-12">
     <div class="row relative-container">
         <div class="new-comment-container col-xs-11" contentEditable="true"
-             ng-bind-html="newComment.content | newCommentFilter"></div>
+             ng-bind-html="commentsVM.newComment.content | newCommentFilter"></div>
         <div class="col-xs-1 no-right-padding bottom-right-align">
             <button class="btn btn-block" data-ng-click="addNewComment()">Done</button>
         </div>
     </div>
-    <div class="row comment-container" data-ng-repeat="comment in vm.comments">
+    <div class="row comment-container" data-ng-repeat="comment in commentsVM.comments">
         <span ng-bind-html="comment.content"></span>
     </div>
 </div>

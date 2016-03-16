@@ -4,16 +4,16 @@
 (function(){
 angular.module('blogArtist.blog').controller('PostController',  PostController);
 
-PostController.$inject = ['Posts'];
+PostController.$inject = ['postsService'];
 
-function PostController(Posts) {
+function PostController(postsService) {
     var vm = this;
     vm.posts = [];
 
     activate();
 
     function activate(){
-        Posts.query(null, function (posts) {
+        postsService.query(null, function (posts) {
             vm.posts = posts.map(function (element) {
                 return post().fromJson(element);
             });

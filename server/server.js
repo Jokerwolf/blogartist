@@ -52,7 +52,6 @@ function loadComments(postId){
             }
             comments.push(comment);
         }
-        console.log('emitting comments:' + 'commentsReady:' + postId);
 
         io.emit('commentsReady:' + postId, comments);
     });

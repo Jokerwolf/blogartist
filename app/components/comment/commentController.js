@@ -3,13 +3,24 @@
  * Date: 01.03.2016
  * Time: 15:26
  */
-angular.module('blogArtist.blog').controller('CommentController', CommentController);
-CommentController.$inject = ['$scope', 'Socket'];
+(function() {
+    angular.module('blogArtist.blog').controller('CommentController', CommentController);
 
-function CommentController($scope, Socket) {
-    Socket.on('commentsReady:' + $scope.vm.id, function(comments){
-        $scope.vm.comments = comments;
-    });
+    CommentController.$inject = ['$scope', 'socketService'];
 
-    Socket.emit('readyForComments', $scope.vm.id);
-}
+    function CommentController($scope, socketService) {
+        var vm = this;
+
+        vm.postId = $scope.vm.id;
+        vm.comments = $scope.vm.comments;
+        vm.newComment = {};
+
+        socketService.on('commentsReady:' + vm.postId, function (comments) {
+            comments.map((el) => {
+                vm.comments.push(el)
+            });
+        });
+
+        socketService.emit('readyForComments', vm.postId);
+    }
+})();
