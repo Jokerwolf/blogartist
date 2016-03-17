@@ -9,7 +9,7 @@
     function blogPostDirective() {
         return {
             restrict: 'E',
-            templateUrl: '/components/post/post-template.html',
+            templateUrl: '/blog/post/post-template.html',
             replace: true,
             scope: {
                 vm: '='

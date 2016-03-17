@@ -14,6 +14,7 @@ var dbController = new dbControllerModule();
 
 
 app.use("/",  express.static(path.join(__dirname, '../app')));
+app.use("/admin",  express.static(path.join(__dirname, '../app/admin')));
 app.use("/assets",  express.static(path.join(__dirname, '../app/assets')));
 app.use("/components",  express.static(path.join(__dirname, '../app/components')));
 app.use("/images", express.static(path.join(__dirname, '../app/assets/images')));

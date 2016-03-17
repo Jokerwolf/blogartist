@@ -11,14 +11,13 @@
     function commentsSectionDirective(socketService) {
         return {
             restrict: 'E',
-            templateUrl: '/components/comment/commentsSection-template.html',
+            templateUrl: '/blog/comment/commentsSection-template.html',
             replace: true,
             scope: true,
             link: link
         };
 
         function link(scope, element, attrs) {
-            console.log(scope);
             scope.addNewComment = function () {
                 scope.commentsVM.newComment = { post_id: scope.commentsVM.postId, content: newCommentContainer.html() };
                 scope.commentsVM.comments.push(scope.commentsVM.newComment);

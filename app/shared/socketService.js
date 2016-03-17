@@ -2,7 +2,7 @@
  * Created by jokerwolf on 28/02/16.
  */
 (function(){
-    angular.module('blogArtist.blog').factory('socketService', socketService);
+    angular.module('blogArtist.shared').factory('socketService', socketService);
 
     socketService.$inject = ['$rootScope', 'serverURL'];
 
